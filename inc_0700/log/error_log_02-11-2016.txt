@@ -1,0 +1,6 @@
+[Feb-11-2016 11:13:47] Undefined variable: result in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 54
+[Feb-11-2016 11:13:47] mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 54
+[Feb-11-2016 11:13:47] Undefined variable: result in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 67
+[Feb-11-2016 11:13:47] mysqli_free_result() expects parameter 1 to be mysqli_result, null given in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 67
+[Feb-11-2016 13:54:08] Undefined variable: id in /home/luigam1/lgamboa.com/wn16/surveys/survey_view.php on line 50
+[Feb-11-2016 13:54:08] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/luigam1/lgamboa.com/wn16/surveys/survey_view.php on line 60

@@ -1,0 +1,2 @@
+[Feb-18-2016 14:13:40] Undefined variable: id in /home/luigam1/lgamboa.com/wn16/surveys/survey_view1.php on line 50
+[Feb-18-2016 14:13:40] Undefined variable: id in /home/luigam1/lgamboa.com/wn16/surveys/survey_view1.php on line 61

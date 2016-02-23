@@ -1,0 +1,2 @@
+[Feb-16-2016 13:14:56] Undefined variable: id in /home/luigam1/lgamboa.com/wn16/surveys/survey_view.php on line 50
+[Feb-16-2016 13:14:56] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/luigam1/lgamboa.com/wn16/surveys/survey_view.php on line 60

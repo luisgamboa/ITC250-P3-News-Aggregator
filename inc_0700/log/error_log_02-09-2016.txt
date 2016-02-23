@@ -1,0 +1,17 @@
+[Feb-09-2016 14:47:29] Table 'example_db2.wn16_Surveys' doesn't exist in /home/luigam1/lgamboa.com/wn16/surveys/survey_list1.php on line 52
+[Feb-09-2016 14:55:43] Undefined variable: result in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 54
+[Feb-09-2016 14:55:43] mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 54
+[Feb-09-2016 14:55:43] Undefined variable: result in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 66
+[Feb-09-2016 14:55:43] mysqli_free_result() expects parameter 1 to be mysqli_result, null given in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 66
+[Feb-09-2016 14:57:39] Undefined variable: result in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 54
+[Feb-09-2016 14:57:39] mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 54
+[Feb-09-2016 14:57:39] Undefined variable: result in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 67
+[Feb-09-2016 14:57:39] mysqli_free_result() expects parameter 1 to be mysqli_result, null given in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 67
+[Feb-09-2016 14:58:18] Undefined variable: result in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 54
+[Feb-09-2016 14:58:18] mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 54
+[Feb-09-2016 14:58:18] Undefined variable: result in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 67
+[Feb-09-2016 14:58:18] mysqli_free_result() expects parameter 1 to be mysqli_result, null given in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 67
+[Feb-09-2016 14:59:28] Undefined variable: result in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 54
+[Feb-09-2016 14:59:28] mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 54
+[Feb-09-2016 14:59:28] Undefined variable: result in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 67
+[Feb-09-2016 14:59:28] mysqli_free_result() expects parameter 1 to be mysqli_result, null given in /home/luigam1/lgamboa.com/wn16/surveys/index.php on line 67
