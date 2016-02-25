@@ -80,7 +80,7 @@ if(mysqli_num_rows($result) > 0)
 
        <div>
        
-       <a href="news_list.php?id=' . $row['CategoryKey'] . '">' . $row['name'] . '</a><br />
+       <a href="news_list.php?id=' . $row['FeedKey'] . '">' . $row['name'] . '</a><br />
        
        </div>
        ';
