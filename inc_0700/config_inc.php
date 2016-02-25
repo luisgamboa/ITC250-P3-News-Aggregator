@@ -311,5 +311,20 @@ $isOpen = fopen($fileName,$myMode);
   }
 }#End fileWrite()
 
+
+class Feed{
+    
+    public $ID = 0;
+    public $DateTime = '';
+    public $Data = '';
+    
+    public function __construct($ID,$DateTime,$Data)
+    {
+        $this->ID = $ID;
+        $this->DateTime = $DateTime;
+        $this->Data = $Data;
+    }
+}
+
 # END ERROR HANDLING FUNCTIONS (error handling/logging functions)---------------------------------------------------------- 
 #no closing PHP tag, on purpose

@@ -47,7 +47,7 @@ if(isset($_GET['id']) && (int)$_GET['id'] > 0)
 }
 
 # SQL statement - PREFIX is optional way to distinguish your app
-$sql = "select * from p3_Categories where CategoryKey=$id";
+$sql = "select * from p3_Feed where FeedKey=$id";
 
 //END CONFIG AREA ---------------------------------------------------------- 
 
@@ -67,34 +67,29 @@ if(mysqli_num_rows($result) > 0)
 	{# pull data from associative array
         
         echo '
-       <h3 align="center">' . $row['CategoryName'] . '</h3> <br/>
-       <div>
-       <p>Category of News: ' . $row['CategoryName'] . '</p>
+       <h3 align="center">' . $row['name'] . '</h3> <br/>
        
-       </div>
        ';
         
-        //feeds with the news
-          $request = "https://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=soccer&output=rss";
-          $response = file_get_contents($request);
-          $xml = simplexml_load_string($response);
-          print '<h1>' . $xml->channel->title . '</h1>';
-          foreach($xml->channel->item as $story)
-          {
-            echo '<a href="' . $story->link . '">' . $story->title . '</a><br />'; 
-            echo '<p>' . $story->description . '</p><br /><br />';
-          }
+    $request = $row['url'];
+    $Data = file_get_contents($request);
+    //keeping MySQL in case of adding to db later
+    $today = date("Y-m-d H:i:s");
+    $myFeed = new Feed(3,$today,$Data);
+        
+    //feeds with the news
+    $xml = simplexml_load_string($Data);
+    print '<h1>' . $xml->channel->title . '</h1>';
+    foreach($xml->channel->item as $story)
+    {
+    echo '<a href="' . $story->link . '">' . $story->title . '</a><br />'; 
+    echo '<p>' . $story->description . '</p><br /><br />';
+    }
         
     }
 }else{#no records
 	echo '<div align="center">Sorry, there are no records that match this query</div>';
 }
-
-    
-
-
-
-
 
 
 echo'<p><a href="news_view.php"><< BACK</a></p>';

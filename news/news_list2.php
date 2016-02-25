@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * news_view.php a view page to show a single survey
+ * news_list.php a view page to show a single survey
  * 
  * based on demo_shared.php
  *
@@ -47,21 +47,13 @@ if(isset($_GET['id']) && (int)$_GET['id'] > 0)
 }
 
 # SQL statement - PREFIX is optional way to distinguish your app
-$sql = "select * from p3_Feed where CategoryKey=$id";
-
-
-# SQL statement - PREFIX is optional way to distinguish your app
-//$sql = "SELECT p3_Categories.CategoryName, p3_Feed.CategoryKey as FeedName, p3_Feed.name
-//FROM p3_Categories
-//INNER JOIN p3_Feed
-//ON p3_Categories.CategoryKey=p3_Feed.CategoryKey";
-
+$sql = "select * from p3_Feed where FeedKey=$id";
 
 //END CONFIG AREA ---------------------------------------------------------- 
 
 get_header(); #defaults to header_inc.php
 ?>
-<h3 align="center">Subcategory</h3>
+
 
 <?php
 
@@ -69,30 +61,33 @@ get_header(); #defaults to header_inc.php
 #IDB::conn() creates a shareable database connection via a singleton class
 $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
 
-
-    
 if(mysqli_num_rows($result) > 0)
-{#there are records - present data
+    {#there are records - present data
 	while($row = mysqli_fetch_assoc($result))
 	{# pull data from associative array
-
-       echo '
-
-       <div>
+        
+        echo '
        
-       <a href="news_list.php?id=' . $row['CategoryKey'] . '">' . $row['name'] . '</a><br />
-       
-       </div>
        ';
         
-	   
-	}
+        //feeds with the news
+          $request = $row['url'];
+          $response = file_get_contents($request);
+          $xml = simplexml_load_string($response);
+          print '<h1>' . $xml->channel->title . '</h1>';
+          foreach($xml->channel->item as $story)
+          {
+            echo '<a href="' . $story->link . '">' . $story->title . '</a><br />'; 
+            echo '<p>' . $story->description . '</p><br /><br />';
+          }
+        
+    }
 }else{#no records
 	echo '<div align="center">Sorry, there are no records that match this query</div>';
 }
 
-echo'
-<br/> <p align="center"><a href="index.php"><< BACK</a></p>';
+
+echo'<p><a href="news_view.php"><< BACK</a></p>';
 @mysqli_free_result($result);
 get_footer(); #defaults to footer_inc.php
 ?>
