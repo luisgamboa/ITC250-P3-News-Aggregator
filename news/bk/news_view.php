@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * survey_list1.php an initial version of our survey app
+ * news_view.php a view page to show a single survey
  * 
  * based on demo_shared.php
  *
@@ -37,34 +37,62 @@ $config->nav1["page.php"] = "New Page!"; #add a new page to end of nav1 (viewabl
 $config->nav1 = array("page.php"=>"New Page!") + $config->nav1; #add a new page to beginning of nav1 (viewable this page only)!!
 */
 
+if(isset($_GET['id']) && (int)$_GET['id'] > 0)
+{//good data, process!
+    $id = (int)$_GET['id'];
+    
+}else{//bad data, you go away now!
+     //This is redirection in PHP
+     header('Location:index.php');
+}
+
 # SQL statement - PREFIX is optional way to distinguish your app
-$sql = "select * from wn16_surveys";
+$sql = "select * from p3_Feed where CategoryKey=$id";
+
+
+# SQL statement - PREFIX is optional way to distinguish your app
+//$sql = "SELECT p3_Categories.CategoryName, p3_Feed.CategoryKey as FeedName, p3_Feed.name
+//FROM p3_Categories
+//INNER JOIN p3_Feed
+//ON p3_Categories.CategoryKey=p3_Feed.CategoryKey";
+
 
 //END CONFIG AREA ---------------------------------------------------------- 
 
 get_header(); #defaults to header_inc.php
 ?>
-<h3 align="center"><?php echo $config->titleTag; ?></h3>
-<p>This page  is both a test page for your IDB shared mysqli connection, and a starting point for 
- * building DB applications using IDB connections</p>
-<p>creates a singleton (shared) mysqli connection via a class named IDB</p>
+<h3 align="center">Subcategory</h3>
+
 <?php
+
+
 #IDB::conn() creates a shareable database connection via a singleton class
 $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
 
-echo '<div align="center"><h4>SQL STATEMENT: <font color="red">' . $sql . '</font></h4></div>';
+
+    
 if(mysqli_num_rows($result) > 0)
 {#there are records - present data
 	while($row = mysqli_fetch_assoc($result))
 	{# pull data from associative array
-	   echo '<p>';
-	   echo 'Title: <b>' . $row['Title'] . '</b><br />';
-	   echo 'Description: <b>' . $row['Description'] . '</b><br />';
-	   echo '</p>';
+
+       echo '
+
+       <div>
+       
+       <a href="news_list.php?id=' . $row['FeedKey'] . '">' . $row['name'] . '</a><br />
+       
+       </div>
+       ';
+        
+	   
 	}
 }else{#no records
 	echo '<div align="center">Sorry, there are no records that match this query</div>';
 }
+
+echo'
+<br/> <p align="center"><a href="index.php"><< BACK</a></p>';
 @mysqli_free_result($result);
 get_footer(); #defaults to footer_inc.php
 ?>

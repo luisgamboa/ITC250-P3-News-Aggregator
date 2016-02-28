@@ -67,19 +67,24 @@ if(mysqli_num_rows($result) > 0)
 	{# pull data from associative array
         
         echo '
+       <h3 align="center">' . $row['name'] . '</h3> <br/>
        
        ';
         
-        //feeds with the news
-          $request = $row['url'];
-          $response = file_get_contents($request);
-          $xml = simplexml_load_string($response);
-          print '<h1>' . $xml->channel->title . '</h1>';
-          foreach($xml->channel->item as $story)
-          {
-            echo '<a href="' . $story->link . '">' . $story->title . '</a><br />'; 
-            echo '<p>' . $story->description . '</p><br /><br />';
-          }
+    $request = $row['url'];
+    $Data = file_get_contents($request);
+    //keeping MySQL in case of adding to db later
+    $today = date("Y-m-d H:i:s");
+    $myFeed = new Feed(3,$today,$Data);
+        
+    //feeds with the news
+    $xml = simplexml_load_string($Data);
+    print '<h1>' . $xml->channel->title . '</h1>';
+    foreach($xml->channel->item as $story)
+    {
+    echo '<a href="' . $story->link . '">' . $story->title . '</a><br />'; 
+    echo '<p>' . $story->description . '</p><br /><br />';
+    }
         
     }
 }else{#no records

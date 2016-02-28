@@ -56,7 +56,7 @@ if(mysqli_num_rows($result) > 0)
 	while($row = mysqli_fetch_assoc($result))
 	{# pull data from associative array
 	   echo '<p>';
-       echo '<a href="news_view.php?id=' . $row['CategoryKey'] . '">' . $row['CategoryName'] . '</a><br />';
+       echo '<a href="news_list.php?id=' . $row['CategoryKey'] . '">' . $row['CategoryName'] . '</a><br />';
 	   echo '</p>';
 	}
 }else{#no records

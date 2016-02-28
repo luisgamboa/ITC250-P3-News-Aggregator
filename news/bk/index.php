@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * news_list.php a view page to show a single survey
+ * index.php a list page of surveys
  * 
  * based on demo_shared.php
  *
@@ -37,61 +37,31 @@ $config->nav1["page.php"] = "New Page!"; #add a new page to end of nav1 (viewabl
 $config->nav1 = array("page.php"=>"New Page!") + $config->nav1; #add a new page to beginning of nav1 (viewable this page only)!!
 */
 
-if(isset($_GET['id']) && (int)$_GET['id'] > 0)
-{//good data, process!
-    $id = (int)$_GET['id'];
-    
-}else{//bad data, you go away now!
-     //This is redirection in PHP
-     header('Location:index.php');
-}
-
 # SQL statement - PREFIX is optional way to distinguish your app
-$sql = "select * from p3_Categories where CategoryKey=$id";
+$sql = "select * from p3_Categories";
 
 //END CONFIG AREA ---------------------------------------------------------- 
 
 get_header(); #defaults to header_inc.php
 ?>
-
+<h3 align="center">News</h3>
 
 <?php
-
-
 #IDB::conn() creates a shareable database connection via a singleton class
 $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
 
+
 if(mysqli_num_rows($result) > 0)
-    {#there are records - present data
+{#there are records - present data
 	while($row = mysqli_fetch_assoc($result))
 	{# pull data from associative array
-        
-        echo '
-       <h3 align="center">' . $row['CategoryName'] . '</h3> <br/>
-       <div>
-       <p>Category of News: ' . $row['CategoryName'] . '</p>
-       
-       </div>
-       ';
-        
-        //feeds with the news
-          $request = "https://news.google.com/news?cf=all&hl=en&pz=1&ned=us&q=soccer&output=rss";
-          $response = file_get_contents($request);
-          $xml = simplexml_load_string($response);
-          print '<h1>' . $xml->channel->title . '</h1>';
-          foreach($xml->channel->item as $story)
-          {
-            echo '<a href="' . $story->link . '">' . $story->title . '</a><br />'; 
-            echo '<p>' . $story->description . '</p><br /><br />';
-          }
-        
-    }
+	   echo '<p>';
+       echo '<a href="news_view.php?id=' . $row['CategoryKey'] . '">' . $row['CategoryName'] . '</a><br />';
+	   echo '</p>';
+	}
 }else{#no records
 	echo '<div align="center">Sorry, there are no records that match this query</div>';
 }
-
-
-echo'<p><a href="news_view.php"><< BACK</a></p>';
 @mysqli_free_result($result);
 get_footer(); #defaults to footer_inc.php
 ?>
