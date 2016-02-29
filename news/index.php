@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * index.php a list page of surveys
+ * index.php a list page to view the categories 
  * 
  * based on demo_shared.php
  *
@@ -10,7 +10,7 @@
  * building DB applications using IDB connections
  *
  * @package nmCommon
- * @author Luis Gamboa <luisgamboasierra@gmail.com>
+ * @author Luis Gamboa <luisgamboasierra@gmail.com>, Alec Martin, Alexandre Daniels
  * @version 2.09 02/09/2016
  * @link http://lgamboa.com/
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License ("OSL") v. 3.0
